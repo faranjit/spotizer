@@ -79,7 +79,7 @@ class Spotify:
 
                 urls = []
                 while offset <= total:
-                    urls.append('https://api.spotify.com/v1/playlists/%s/tracks?offset=%d&limit=%d' %
+                    urls.append(self.BASE_URL + '/playlists/%s/tracks?offset=%d&limit=%d' %
                                 (playlist['id'], offset, limit))
                     offset += limit
 
@@ -90,7 +90,7 @@ class Spotify:
                     self.get_items_from_response(response, tracks)
 
             else:
-                url = 'https://api.spotify.com/v1/playlists/%s/tracks' % playlist['id']
+                url = self.BASE_URL + '/playlists/%s/tracks' % playlist['id']
                 response = self.get_request(url)
                 self.get_items_from_response(response, tracks)
 
